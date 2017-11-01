@@ -1,7 +1,7 @@
 {
   "name": "codex.transport",
   "exportModuleName": "transport",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "One click file uploader",
   "main": "./src/transport.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "codex.ajax": "^2.0.0"
+    "codex.ajax": "^2.1.0"
   }
 }

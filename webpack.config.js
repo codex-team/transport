@@ -40,18 +40,18 @@ var useModule = {
      */
     {
       test : /\.js$/,
-      exclude: [ /node_modules/ ],
+      exclude: /node_modules/,
       use: [
-        // {
-        //   loader: 'eslint-loader',
-        //   options: {
-        //     fix: false
-        //   }
-        // },
         {
           loader: 'babel-loader',
           query: {
             presets: [ 'env' ],
+          }
+        },
+        {
+          loader: 'eslint-loader',
+          options: {
+            // fix: true
           }
         }
       ]
@@ -65,9 +65,9 @@ var useModule = {
 var plugins = [
 
   /** Minify JS and CSS */
-  new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true
-  }),
+  // new webpack.optimize.UglifyJsPlugin({
+  //   sourceMap: true
+  // }),
 
   /** Block biuld if errors found */
   new webpack.NoEmitOnErrorsPlugin(),
