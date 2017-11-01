@@ -12,10 +12,57 @@ module.exports = function (transport) {
 
   /** Empty configuration */
 
-  var config_ = null;
+  let config_ = null;
 
   /** File holder */
   transport.input = null;
+
+  let clickInput_ = function clickInput_() {
+    transport.input.click();
+  };
+
+  /**
+     * Sends transport AJAX request
+     */
+  let send_ = function send_() {
+    let url = config_.url,
+        data = config_.data,
+        before = config_.before,
+        progress = config_.progress,
+        success = config_.success,
+        error = config_.error,
+        after = config_.after,
+        formData = new FormData(),
+        files = transport.input.files;
+
+    if (files.length > 1) {
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files[]', files[i], files[i].name);
+      }
+    } else {
+      formData.append('files', files[0], files[0].name);
+    }
+
+    /**
+         * Append additional data
+         */
+    if (data !== null && typeof data === 'object') {
+      for (let key in data) {
+        formData.append(key, data[key]);
+      }
+    }
+
+    ajax.call({
+      type: 'POST',
+      data: formData,
+      url: url,
+      before: before,
+      progress: progress,
+      success: success,
+      error: error,
+      after: after
+    });
+  };
 
   /** initialize module */
   transport.init = function (configuration) {
@@ -26,7 +73,7 @@ module.exports = function (transport) {
 
     config_ = configuration;
 
-    var inputElement = document.createElement('INPUT');
+    let inputElement = document.createElement('INPUT');
 
     inputElement.type = 'file';
 
@@ -45,53 +92,6 @@ module.exports = function (transport) {
 
     /** click input to show upload window */
     clickInput_();
-  };
-
-  var clickInput_ = function clickInput_() {
-    transport.input.click();
-  };
-
-  /**
-     * Sends transport AJAX request
-     */
-  var send_ = function send_() {
-    var url = config_.url,
-        data = config_.data,
-        before = config_.before,
-        progress = config_.progress,
-        success = config_.success,
-        error = config_.error,
-        after = config_.after,
-        formData = new FormData(),
-        files = transport.input.files;
-
-    if (files.length > 1) {
-      for (var i = 0; i < files.length; i++) {
-        formData.append('files[]', files[i], files[i].name);
-      }
-    } else {
-      formData.append('files', files[0], files[0].name);
-    }
-
-    /**
-         * Append additional data
-         */
-    if (data !== null && typeof data === 'object') {
-      for (var key in data) {
-        formData.append(key, data[key]);
-      }
-    }
-
-    ajax.call({
-      type: 'POST',
-      data: formData,
-      url: url,
-      before: before,
-      progress: progress,
-      success: success,
-      error: error,
-      after: after
-    });
   };
 
   return transport;

@@ -27,7 +27,7 @@ var entry = './src/transport.js';
  *                  It will work with CommonJS, AMD and as global variable.
  */
 var output = {
-  filename: pkg.main,
+  filename: './lib/bundle.js',
   library: pkg.exportModuleName,
   libraryTarget: 'umd',
 };
