@@ -39,21 +39,21 @@ var useModule = {
      * Process JS files
      */
     {
-      test : /\.js$/,
+      test: /\.js$/,
       exclude: /node_modules/,
       use: [
         {
           loader: 'babel-loader',
           query: {
-            presets: [ 'env' ],
+            presets: [ 'es2015' ],
           }
         },
         {
           loader: 'eslint-loader',
           options: {
-            // fix: true
+            fix: true
           }
-        }
+        },
       ]
     }
   ]
@@ -65,9 +65,9 @@ var useModule = {
 var plugins = [
 
   /** Minify JS and CSS */
-  // new webpack.optimize.UglifyJsPlugin({
-  //   sourceMap: true
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true
+  }),
 
   /** Block biuld if errors found */
   new webpack.NoEmitOnErrorsPlugin(),
