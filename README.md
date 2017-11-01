@@ -16,12 +16,10 @@ transport.init({
        // ...
    },
    success: function (response) {
-       response = JSON.parse(response);
        console.log(response);
        // ...
    },
    error: function (response) {
-       response = JSON.parse(response);
        console.log(response);
        // ...
    },
