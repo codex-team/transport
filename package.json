@@ -1,7 +1,7 @@
 {
   "name": "codex.transport",
   "exportModuleName": "transport",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "One click file uploader",
   "main": "./lib/bundle.js",
   "scripts": {

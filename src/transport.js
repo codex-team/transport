@@ -40,7 +40,7 @@ module.exports = function (transport) {
         formData.append('files[]', files[i], files[i].name);
       }
     } else {
-      formData.append('files', files[0], files[0].name);
+      formData.append('file', files[0], files[0].name);
     }
 
     /**
