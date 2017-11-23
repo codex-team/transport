@@ -22,12 +22,21 @@ module.exports = function (transport) {
   };
 
   /**
-     * Sends transport AJAX request
-     */
+   * Before function decorator. Call config_.before with passed files
+   *
+   * @private
+   */
+  let before_ = function () {
+    config_.before(transport.input.files);
+  };
+
+  /**
+   * Sends transport AJAX request
+   */
   let send_ = function send_() {
     let url = config_.url,
         data = config_.data,
-        before = config_.before,
+        before = before_,
         progress = config_.progress,
         success = config_.success,
         error = config_.error,
