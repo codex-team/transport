@@ -21,19 +21,13 @@ module.exports = function (transport) {
     transport.input.click();
   };
 
-  let before_ = function (data) {
-    let files = transport.input.files,
-        names = [];
-
-    if (files.length > 1) {
-      for (let i = 0; i < files.length; i++) {
-        names.push(files[0].name);
-      }
-    } else {
-      names = files[0].name;
-    }
-
-    config_.before(data, names);
+  /**
+   * Before function decorator. Call config_.before with passed files
+   *
+   * @private
+   */
+  let before_ = function () {
+    config_.before(transport.input.files);
   };
 
   /**
