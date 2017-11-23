@@ -21,13 +21,28 @@ module.exports = function (transport) {
     transport.input.click();
   };
 
+  let before_ = function (data) {
+    let files = transport.input.files,
+        names = [];
+
+    if (files.length > 1) {
+      for (let i = 0; i < files.length; i++) {
+        names.push(files[0].name);
+      }
+    } else {
+      names = files[0].name;
+    }
+
+    config_.before(data, names);
+  };
+
   /**
-     * Sends transport AJAX request
-     */
+   * Sends transport AJAX request
+   */
   let send_ = function send_() {
     let url = config_.url,
         data = config_.data,
-        before = config_.before,
+        before = before_,
         progress = config_.progress,
         success = config_.success,
         error = config_.error,
