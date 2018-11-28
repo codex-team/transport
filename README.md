@@ -1,3 +1,5 @@
+> ⚠️ Deprecated. Use package [`@codexteam/ajax`](https://github.com/codex-team/ajax) instead!
+
 # codex.transport
 
 One click file uploader
